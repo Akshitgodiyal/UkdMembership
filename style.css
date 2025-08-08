@@ -79,12 +79,14 @@
       }
 
       .label {
+        
         font-weight: 900;
         font-size: 24px;
       }
       .form-label {
+        color: white;
         font-weight: 600;
-       
+       margin: 0px;
       }
       .section-title {
         margin-top: -15px;
@@ -189,4 +191,9 @@ select {
   appearance: auto;
   -webkit-appearance: auto;
   -moz-appearance: auto;
+}
+@media (max-width: 768px) {
+.overflow-mobile{
+  overflow: auto;
+}
 }
