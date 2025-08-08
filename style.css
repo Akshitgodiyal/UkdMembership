@@ -1,0 +1,192 @@
+  
+      body {
+        font-family: "Noto Sans Devanagari", sans-serif;
+      }
+
+      .border-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .top-border,
+      .bottom-border {
+        height: 15px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        z-index: 10;
+      }
+
+      .top-border {
+        top: 0;
+        background: linear-gradient(to right, #005222 50%, #d41919 50%);
+      }
+
+      .bottom-border {
+        bottom: 0;
+        background: linear-gradient(to right, #005222 50%, #d41919 50%);
+      }
+
+      .border-left,
+      .border-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 15px;
+        z-index: 10;
+      }
+
+      .border-left {
+        left: 0;
+        background: #005222;
+      }
+
+      .border-right {
+        right: 0;
+        background: #d41919;
+      }
+
+      .card-template {
+        width: 1024px;
+        height: 682px;
+        background: #ffffebdb;
+        position: relative;
+        padding: 30px 25px;
+        box-sizing: border-box;
+        z-index: 1;
+      }
+
+      .profile-pic {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border: 2px solid black;
+      }
+
+      .logo {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        object-fit: cover;
+        background: #f0f0f0;
+      }
+
+      .qrimg {
+        width: 220px;
+        height: 220px;
+        object-fit: contain;
+        background: #f0f0f0;
+      }
+
+      .label {
+        font-weight: 900;
+        font-size: 24px;
+      }
+      .form-label {
+        font-weight: 600;
+       
+      }
+      .section-title {
+        margin-top: -15px;
+        font-size: 46px;
+        font-weight: bold;
+        color: #d41919;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+      }
+
+      .ukdText {
+        font-weight: 900;
+        color: #005222;
+        font-size: 78px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .footertextgreen {
+        line-height: 70px;
+        color: #005222;
+        font-size: 64px;
+      }
+
+      .footer-add {
+        color: black;
+        font-size: 32px;
+        line-height: 32px;
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .values {
+        margin: 0px 10px;
+        font-weight: 500;
+        font-size: 20px;
+      }
+
+      .postname {
+        font-size: 20px;
+      }
+
+      .ukdflag {
+        position: absolute;
+        top: 57%;
+        left: 54%;
+        transform: translate(-50%, -50%);
+        width: 36%;
+        height: 70%;
+        background: url(UKD.webp) no-repeat center center;
+        background-size: contain;
+        opacity: 0.15;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .download-btn {
+        background: linear-gradient(90deg, #155724 26%, #721c24 100%);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+      }
+
+      .download-btn:hover {
+        cursor: pointer;
+        color: white;
+      }
+
+      .status-message {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+      }
+
+      .status-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .status-error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .form-contro{
+        margin-bottom: 10px;
+      }
+select {
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+}
