@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UKD Membership Card</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: "Noto Sans Devanagari", sans-serif;
+    }
+
+    .border-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-top: 40px;
+    }
+
+    .top-border,
+    .bottom-border {
+      height: 15px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      z-index: 10;
+    }
+
+    .top-border {
+      top: 0;
+      background: linear-gradient(to right, #005222 50%, #d41919 50%);
+    }
+
+    .bottom-border {
+      bottom: 0;
+      background: linear-gradient(to right, #005222 50%, #d41919 50%);
+    }
+
+    .border-left,
+    .border-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 15px;
+      z-index: 10;
+    }
+
+    .border-left {
+      left: 0;
+      background: #005222;
+    }
+
+    .border-right {
+      right: 0;
+      background: #d41919;
+    }
+
+    .card-template {
+      width: 1024px;
+      height: 682px;
+      background: #ffffebdb;
+      position: relative;
+      padding: 30px 25px;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .profile-pic {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border: 2px solid black;
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 100%;
+      object-fit: cover;
+      background: #f0f0f0;
+    }
+
+    .qrimg {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      background: #f0f0f0;
+    }
+
+    .label {
+      font-weight: 900;
+      font-size: 24px;
+    }
+
+    .section-title {
+      font-size: 46px;
+      font-weight: bold;
+      color: #d41919;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+    }
+
+    .ukdText {
+      font-weight: 900;
+      color: #005222;
+      font-size: 78px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .footertextgreen {
+      line-height: 70px;
+      color: #005222;
+      font-size: 64px;
+    }
+
+    .footer-add {
+      color: black;
+      font-size: 32px;
+      line-height: 32px;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .values {
+      margin: 0px 10px;
+      font-weight: 500;
+      font-size: 20px;
+    }
+
+    .postname {
+      font-size: 20px;
+    }
+
+    .ukdflag {
+      position: absolute;
+      top: 57%;
+      left: 54%;
+      transform: translate(-50%, -50%);
+      width: 36%;
+      height: 70%;
+      background: url(UKD.webp) no-repeat center center;
+      background-size: contain;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .download-btn {
+      background: #005222;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .download-btn:hover {
+      background: #003d1a;
+    }
+
+    .status-message {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .status-success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .status-error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container my-4">
+    <div class="text-center mb-4 fs-3 fw-bold text-wrap px-2">
+      UKD Membership Card Generator
+    </div>
+
+    <div class="row mb-4 flex-column flex-md-row">
+      <!-- Form -->
+      <div class="col-md-4 px-2 px-md-5 mb-4 mb-md-0">
+        <form id="cardForm">
+          <div class="mb-2"><label class="form-label">Name</label><input type="text" class="form-control" id="name" value="श्री पूरण सिंह कन्थेत" /></div>
+          <div class="mb-2"><label class="form-label">ID Number</label><input type="text" class="form-control" id="idNo" value="UKD001" /></div>
+          <div class="mb-2"><label class="form-label">State</label><input type="text" class="form-control" id="state" value="उत्तराखंड" /></div>
+          <div class="mb-2"><label class="form-label">District</label><input type="text" class="form-control" id="district" value="पौड़ी गढ़वाल" /></div>
+          <div class="mb-2"><label class="form-label">Constituency</label><input type="text" class="form-control" id="constituency" value="श्रीनगर" /></div>
+          <div class="mb-2"><label class="form-label">Position</label><input type="text" class="form-control" id="position" value="केंद्रीय अध्यक्ष" /></div>
+          <div class="mb-3"><label class="form-label">Upload Profile Image</label><input type="file" class="form-control" id="imageUpload" accept="image/*" /></div>
+          <button type="button" class="btn download-btn" onclick="exportCard()" id="downloadBtn">📥 Download Card as Image</button>
+          <div id="statusMessage" class="status-message"></div>
+        </form>
+      </div>
+
+      <!-- Card -->
+      <div class="col-md-8 d-flex justify-content-center">
+        <div id="fullExport" class="w-100 d-flex justify-content-center overflow-auto">
+          <div class="border-wrapper" id="cardContainer" style="transform: scale(0.8); transform-origin: top;">
+            <!-- Do not modify this section - card-template content remains exactly the same -->
+            <div class="top-border"></div>
+            <div class="bottom-border"></div>
+            <div class="border-left"></div>
+            <div class="border-right"></div>
+            <div class="card-template" id="membershipCard">
+              <div class="ukdflag"></div>
+              <div class="d-flex justify-content-between align-items-center">
+                <img src="./ukd.jfif" class="logo" />
+                <div><div class="ukdText">उत्तराखंड क्रांति दल</div></div>
+                <img src="./logo2.jpg" class="logo" />
+              </div>
+
+              <div class="section-title">सदस्यता कार्ड</div>
+              <div class="d-flex justify-content-between px-3">
+                <div class="d-flex mt-1">
+                  <div class="d-flex flex-column align-items-center">
+                    <div class="mb-1 values" id="cardName">श्री पूरण सिंह कन्थेत</div>
+                    <div id="profilePic" class="profile-pic me-3 d-flex align-items-center justify-content-center" style="background: #f0f0f0; color: #666;">Photo</div>
+                  </div>
+                  <div class="d-flex flex-column justify-content-between mt-4">
+                    <div class="my-1"><span class="label">आई. डी. नं :</span> <span class="values" id="cardId">UKD001</span></div>
+                    <div class="mb-1"><span class="label">राज्य :</span> <span class="values" id="cardState">उत्तराखंड</span></div>
+                    <div class="mb-1"><span class="label">जिला :</span> <span class="values" id="cardDistrict">पौड़ी गढ़वाल</span></div>
+                    <div class="mb-1"><span class="label">विधानसभा :</span> <span class="values" id="cardConstituency">श्रीनगर</span></div>
+                    <div class="mb-1"><span class="label">वैध :</span> <span class="values" id="cardValid">2025</span></div>
+                  </div>
+                </div>
+                <div class="d-flex flex-column align-items-end">
+                  <img src="./qrcode.PNG" alt="" class="qrimg" />
+                  <a class="bold" href="https://ourukd.in">www.ourUKD.in</a>
+                </div>
+              </div>
+              <div class="text-end postname fw-bold mt-2" id="cardNameFooter">श्री पूरण सिंह कन्थेत</div>
+              <div class="postname text-end fw-bold" id="cardPosition">केंद्रीय अध्यक्ष</div>
+              <div class="d-flex footer flex-column fw-bold">
+                <div class="footertextgreen center">उत्तराखंड क्रांति दल</div>
+                <div class="footer-add center">क्रांति भवन, 10 कोर्ट रोड, देहरादून</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show status message
+    function showStatus(message, isError = false) {
+      const statusDiv = document.getElementById('statusMessage');
+      statusDiv.textContent = message;
+      statusDiv.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
+      statusDiv.style.display = 'block';
+      
+      setTimeout(() => {
+        statusDiv.style.display = 'none';
+      }, 5000);
+    }
+
+    // Update card in real-time
+    const updateCard = () => {
+      const name = document.getElementById("name").value;
+      const position = document.getElementById("position").value;
+      document.getElementById("cardName").innerText = name;
+      document.getElementById("cardNameFooter").innerText = name;
+      document.getElementById("cardId").innerText = document.getElementById("idNo").value;
+      document.getElementById("cardState").innerText = document.getElementById("state").value;
+      document.getElementById("cardDistrict").innerText = document.getElementById("district").value;
+      document.getElementById("cardConstituency").innerText = document.getElementById("constituency").value;
+      document.getElementById("cardPosition").innerText = position;
+    };
+
+    // Listen for form changes
+    document.getElementById("cardForm").addEventListener("input", updateCard);
+
+    // Handle image upload
+    document.getElementById("imageUpload").addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        showStatus('Please select a valid image file.', true);
+        return;
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        showStatus('Image size should be less than 5MB.', true);
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const profileDiv = document.getElementById("profilePic");
+        profileDiv.style.backgroundImage = `url(${e.target.result})`;
+        profileDiv.style.backgroundSize = 'cover';
+        profileDiv.style.backgroundPosition = 'center';
+        profileDiv.innerHTML = ''; // Remove placeholder text
+        showStatus('Profile image uploaded successfully!');
+      };
+      reader.onerror = () => {
+        showStatus('Error reading image file.', true);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Convert image to base64 to avoid CORS issues
+    function convertImageToBase64(img) {
+      return new Promise((resolve) => {
+        if (!img.src || img.src.startsWith('data:')) {
+          resolve(img.src);
+          return;
+        }
+        
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = img.naturalWidth || img.width;
+        canvas.height = img.naturalHeight || img.height;
+        
+        img.crossOrigin = 'anonymous';
+        
+        const handleLoad = () => {
+          try {
+            ctx.drawImage(img, 0, 0);
+            const base64 = canvas.toDataURL('image/png');
+            resolve(base64);
+          } catch (e) {
+            console.warn('Could not convert image:', e);
+            resolve('');
+          }
+        };
+        
+        if (img.complete) {
+          handleLoad();
+        } else {
+          img.onload = handleLoad;
+          img.onerror = () => resolve('');
+        }
+      });
+    }
+
+    // Export card as image
+    async function exportCard() {
+      const downloadBtn = document.getElementById('downloadBtn');
+      const originalText = downloadBtn.innerHTML;
+      
+      try {
+        downloadBtn.innerHTML = '⏳ Generating...';
+        downloadBtn.disabled = true;
+
+        const cardElement = document.getElementById("cardContainer");
+        
+        // Convert all images to base64 first
+        const images = cardElement.querySelectorAll('img');
+        const imagePromises = Array.from(images).map(async (img) => {
+          const base64 = await convertImageToBase64(img);
+          if (base64) img.src = base64;
+        });
+        
+        await Promise.all(imagePromises);
+        
+        // Wait for font loading and render
+        await document.fonts.ready;
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        const canvas = await html2canvas(cardElement, {
+          allowTaint: true,
+          useCORS: true,
+          scale: 2,
+          backgroundColor: '#ffffff',
+          logging: true,
+          letterRendering: true,
+          foreignObjectRendering: false,
+          imageTimeout: 10000,
+          removeContainer: false,
+          onclone: (clonedDoc) => {
+            // Fix any styling issues in cloned document
+            const clonedCard = clonedDoc.getElementById("cardContainer");
+            if (clonedCard) {
+              // Ensure all styles are properly applied
+              const originalStyles = window.getComputedStyle(cardElement);
+              clonedCard.style.fontFamily = originalStyles.fontFamily;
+            }
+          }
+        });
+
+        // Create and trigger download
+        const link = document.createElement("a");
+        const name = document.getElementById("name").value.replace(/\s+/g, '_') || "Member";
+        const idNo = document.getElementById("idNo").value || Date.now();
+        
+        link.download = `UKD_Membership_Card_${name}_${idNo}.png`;
+        link.href = canvas.toDataURL("image/png", 1.0);
+        
+        // Force download
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        showStatus('✅ Card downloaded successfully!');
+        
+      } catch (error) {
+        console.error('Export error:', error);
+        showStatus(`❌ Download failed: ${error.message}`, true);
+        
+        // Fallback: try simpler approach
+        try {
+          const canvas = await html2canvas(cardElement, {
+            scale: 1,
+            backgroundColor: '#ffffff'
+          });
+          
+          const link = document.createElement("a");
+          link.download = "UKD_Membership_Card.png";
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+          
+          showStatus('✅ Card downloaded (basic quality)');
+        } catch (fallbackError) {
+          showStatus('❌ Download completely failed. Try refreshing the page.', true);
+        }
+      } finally {
+        downloadBtn.innerHTML = originalText;
+        downloadBtn.disabled = false;
+      }
+    }
+
+    // Initialize card with default values
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCard();
+    });
+  </script>
+</body>
+</html>
