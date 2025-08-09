@@ -21,75 +21,91 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body style="background: #242129;">
+  <body style="background: #242129">
     <div class="container my-4">
       <div
         class="ukdText text-center"
-        style="font-size: 30px; margin: 20px auto; color: white;"
+        style="font-size: 30px; margin: 20px auto; color: white"
       >
         UKD Membership Card Generator
       </div>
 
-      <div class="  row mb-4 flex-column flex-md-row">
+      <div class="row mb-4 flex-column flex-md-row">
         <!-- Form -->
-        
+
         <div class="col-md-4 px-2 px-md-5 mb-4 mb-md-0">
-               <div class="text-white text-center my-2" style="font-size: 16px; font-weight: 700;">Member details</div>
+          <div
+            class="text-white text-center my-2"
+            style="font-size: 16px; font-weight: 700"
+          >
+            Member details
+          </div>
           <form id="cardForm">
             <div class="mb-3">
               <label class="form-label">Name</label
               ><input
+                placeholder="Member Name"
                 type="text"
                 class="form-control"
                 id="name"
-                value="Member Name"
+                value=""
               />
             </div>
             <div class="mb-3">
               <label class="form-label">ID Number</label
               ><input
+                placeholder="Member ID No."
                 type="text"
                 class="form-control"
                 id="idNo"
-                value="UKD001"
+                value=""
               />
             </div>
             <div class="mb-3">
               <label class="form-label">State</label
               ><input
-              disabled
+                placeholder="Enter State"
                 type="text"
                 class="form-control"
                 id="state"
-                value="उत्तराखंड"
+                value=""
               />
             </div>
             <div class="mb-3">
               <label class="form-label">District</label>
-              <!-- <input
+              <input
+                placeholder="Enter District"
                 type="text"
                 class="form-control"
                 id="district"
-                value="पौड़ी गढ़वाल"
-              /> -->
-              <select class="form-select" id="district">
+                value=""
+              />
+              <!-- <select class="form-select" id="district">
                 <option value="---">Select District</option>
-              </select>
+              </select> -->
             </div>
             <div class="mb-3">
               <label class="form-label">Constituency</label>
-              <select class="form-select" id="vidhanSabha">
+              <input
+                placeholder="Enter Constituency"
+                type="text"
+                class="form-control"
+                id="vidhanSabha"
+                value=""
+              />
+              <!-- <select class="form-select" id="vidhanSabha">
                 <option value="---">Select Vidhan Sabha</option>
-              </select>
+              </select> -->
             </div>
 
             <div class="mb-3">
               <label class="form-label">Position</label
               ><input
+                placeholder="Enter Position"
                 type="text"
                 class="form-control"
                 id="position"
-                value="केंद्रीय अध्यक्ष"
+                value=""
               />
             </div>
             <div class="mb-3">
@@ -109,8 +125,7 @@
                 type="text"
                 id="validity"
                 class="form-control datepicker"
-                placeholder="Select date"
-              
+                placeholder="Select Date"
               />
             </div>
 
@@ -127,9 +142,14 @@
         </div>
 
         <!-- Card -->
-          
-        <div class="col-md-8 bg-light ">
-             <div class="  text-center mt-2 mb-4" style="font-size: 16px; font-weight: 700;">Card View</div>
+
+        <div class="col-md-8 bg-light">
+          <div
+            class="text-center mt-2 mb-4"
+            style="font-size: 16px; font-weight: 700"
+          >
+            Card View
+          </div>
           <div
             id="fullExport"
             class="w-100 d-flex justify-content-center overflow-sm-auto overflow-mobile"
@@ -156,9 +176,7 @@
                 <div class="d-flex justify-content-between px-3">
                   <div class="d-flex mt-1">
                     <div class="d-flex flex-column align-items-center">
-                      <div class="mb-1 values" id="cardName">
-                        
-                      </div>
+                      <div class="mb-1 values" id="cardName"></div>
                       <div
                         id="profilePic"
                         class="profile-pic me-3 d-flex align-items-center justify-content-center"
@@ -172,27 +190,23 @@
                     >
                       <div class="my-1">
                         <span class="label">आई. डी. नं :</span>
-                        <span class="values" id="cardId">----</span>
+                        <span class="values" id="cardId"></span>
                       </div>
                       <div class="mb-1">
                         <span class="label">राज्य :</span>
-                        <span class="values" id="cardState">----</span>
+                        <span class="values" id="cardState"></span>
                       </div>
                       <div class="mb-1">
                         <span class="label">जिला :</span>
-                        <span class="values" id="cardDistrict"
-                          >---</span
-                        >
+                        <span class="values" id="cardDistrict">---</span>
                       </div>
                       <div class="mb-1">
                         <span class="label">विधानसभा :</span>
-                        <span class="values" id="cardConstituency"
-                          >----</span
-                        >
+                        <span class="values" id="cardConstituency"></span>
                       </div>
                       <div class="mb-1">
                         <span class="label">वैध :</span>
-                        <span class="values" id="cardValid">----</span>
+                        <span class="values" id="cardValid"></span>
                       </div>
                     </div>
                   </div>
@@ -204,12 +218,11 @@
                 <div
                   class="text-end postname px-3 fw-bold mt-2"
                   id="cardNameFooter"
-                >
-                  
-                </div>
-                <div class="postname text-end px-3 fw-bold" id="cardPosition">
-                  केंद्रीय अध्यक्ष
-                </div>
+                ></div>
+                <div
+                  class="postname text-end px-3 fw-bold"
+                  id="cardPosition"
+                ></div>
                 <div class="d-flex footer flex-column fw-bold">
                   <div class="footertextgreen center">उत्तराखंड क्रांति दल</div>
                   <div class="footer-add center">
@@ -225,97 +238,7 @@
 
     <script>
       // Static mapping of Uttarakhand districts and Vidhan Sabha constituencies
-      const uttarakhandData = {
-        अल्मोड़ा: ["अल्मोड़ा", "सोमेश्वर (अनुसूचित जाति)", "साल्ट", "जागेश्वर"],
-        बागेश्वर: ["बागेश्वर (अनुसूचित जाति)", "कपकोट"],
-        चमोली: ["बद्रीनाथ", "जोशीमठ", "थराली (अनुसूचित जाति)"],
-        चंपावत: ["चंपावत", "लोहाघाट"],
-        देहरादून: [
-          "मसूरी",
-          "राजपुर रोड",
-          "देहरादून कैंटोनमेंट",
-          "विकासनगर",
-          "सहसपुर",
-          "डोईवाला",
-          "ऋषिकेश",
-        ],
-        हरिद्वार: [
-          "हरिद्वार",
-          "ज्वालापुर (अनुसूचित जाति)",
-          "भेल रानीपुर",
-          "हरिद्वार ग्रामीण",
-          "लक्सर",
-          "खानपुर",
-          "मंगलौर",
-          "पीरन कलियर",
-        ],
-        नैनीताल: [
-          "लालकुआं",
-          "भीमताल",
-          "नैनीताल",
-          "हल्द्वानी",
-          "कालाढूंगी",
-          "रामनगर",
-        ],
-        "पौड़ी गढ़वाल": [
-          "श्रीनगर",
-          "चौबट्टाखाल",
-          "धूमाकोट",
-          "लैंसडाउन",
-          "कोटद्वार",
-          "यमकेश्वर",
-        ],
-        पिथौरागढ़: [
-          "पिथौरागढ़",
-          "डीडीहाट",
-          "गंगोलीहाट (अनुसूचित जाति)",
-          "धारचूला",
-        ],
-        रुद्रप्रयाग: ["रुद्रप्रयाग", "केदारनाथ"],
-        "टिहरी गढ़वाल": [
-          "प्रतापनगर",
-          "टिहरी",
-          "नरेंद्रनगर",
-          "धनोल्टी",
-          "घनसाली (अनुसूचित जाति)",
-        ],
-        "उधम सिंह नगर": [
-          "सितारगंज",
-          "नानपारा",
-          "काशीपुर",
-          "किच्छा",
-          "बाजपुर (अनुसूचित जाति)",
-          "गदरपुर",
-          "रुद्रपुर",
-          "खटीमा",
-          "जसपुर",
-        ],
-        उत्तरकाशी: ["पुरोला (अनुसूचित जाति)", "गंगोत्री", "यमुनोत्री"],
-      };
 
-      const districtSelect = document.getElementById("district");
-      Object.keys(uttarakhandData).forEach((district) => {
-        const opt = document.createElement("option");
-        opt.value = district;
-        opt.textContent = district;
-        districtSelect.appendChild(opt);
-      });
-
-      // Populate Vidhan Sabha based on district selection
-      districtSelect.addEventListener("change", function () {
-        const vidhanSabhaSelect = document.getElementById("vidhanSabha");
-        vidhanSabhaSelect.innerHTML =
-          '<option value="">Select Vidhan Sabha</option>';
-
-        if (this.value && uttarakhandData[this.value]) {
-          uttarakhandData[this.value].forEach((vs) => {
-            const opt = document.createElement("option");
-            opt.value = vs;
-            opt.textContent = vs;
-            vidhanSabhaSelect.appendChild(opt);
-          });
-        }
-      });
       // Show status message
       function showStatus(message, isError = false) {
         const statusDiv = document.getElementById("statusMessage");
@@ -346,7 +269,7 @@
           document.getElementById("vidhanSabha").value;
         document.getElementById("cardPosition").innerText = position;
         document.getElementById("cardValid").innerText =
-          document.getElementById("validity").value || "----";
+          document.getElementById("validity").value || "";
       };
 
       // Listen for form changes
